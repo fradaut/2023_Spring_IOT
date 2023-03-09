@@ -69,13 +69,16 @@ void loop() {
       last_time_led = millis();
       led_on(turn);
       turn = (turn+1)%2;
-      Serial.println("LED ON");
+      Serial.print("LED ON\n");
+      Serial1.print("LED ON\n");
       toggle_on = true;
-    }
-    if(strcmp(buf, "OFF\n") == 0) {
+    } else if(strcmp(buf, "OFF\n") == 0) {
       led_off();
-      Serial.println("LED OFF");
+      Serial.print("LED OFF\n");
+      Serial1.print("LED OFF\n");
       toggle_on = false;
+    } else {
+      Serial.print(buf);
     }
     free(buf);
     buf = NULL;
